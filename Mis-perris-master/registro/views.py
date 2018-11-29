@@ -17,6 +17,9 @@ def administrar(request):
 def galeria(request):
     return render(request, 'galeria.html',{'Listado_registro':Mascotas.objects.all()})
 
+def manifest(request):
+    return render(request, 'manifest.json', )
+
 
 def registPerro(request):
 
@@ -55,8 +58,8 @@ def editPerro(request):
     return render(request, 'admin.html', {})
 
 def index(request):
-    usuario = request.session.get('usuario',None)
-    return render(request,'index.html',{'name':'Registro de personas','personas':Persona.objects.all(),'usuario':usuario})
+    user = request.session.get('user',None)
+    return render(request,'index.html',{'name':'Registro de personas','personas':Persona.objects.all(),'user':user})
 
 
 
@@ -104,14 +107,13 @@ def login(request):
     return render(request,'login.html',{})
 
 def login_iniciar(request):
-    correo = request.POST.get('nombre_usuario', '')
-    contrasenia = request.POST.get('contrasenia', '')
-    persona = Persona.objects.filter(correo=correo).filter(contrasenia=contrasenia)
-    print(persona)
-    if persona is not None:
-        request.session['usuario'] = persona[0].nombre
-        request.session['id'] = persona[0].id
-        return redirect('index')
+    username = request.POST.get('nombre_usuario', '')
+    password = request.POST.get('contrasenia', '')
+    user = authenticate(request, username = username ,password = password)
+    print(user)
+    if user is not None:
+       auth_login(request, user)
+       return redirect('index')
     else:
-        return HttpResponse('No existe')
+        return HttpResponse('No existe html')
     

@@ -4,15 +4,6 @@ from django.urls import path
 from . import views
 from django.conf.urls.static import static 
 from django.conf import settings 
-from django.conf.urls import url, include
-from django.conf import settings 
-from rest_framework import routers
-from registro.quickstart import api_views
-
-router = routers.DefaultRouter()
-router.register(r'personas', api_views.PersonaViewSet)
-router.register(r'mascotas', api_views.MascotaViewSet)
-
 
 urlpatterns = [
     path('', views.index, name="index"),
@@ -26,6 +17,6 @@ urlpatterns = [
     path('administrar/registPerro',views.registPerro, name='registPerro'),
     path('administrar/editPerro',views.editPerro, name='editPerro'),
     path('galeria', views.galeria, name='galeria'),
-    url(r'^api/', include(router.urls))
+    path('manifest.json', views.manifest, name="manifest")
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

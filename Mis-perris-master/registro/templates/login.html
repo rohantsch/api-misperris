@@ -15,26 +15,25 @@
 
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.1/examples/sign-in/signin.css" rel="stylesheet">
+    <link rel="manifest" href="/static/manifest.json">
   </head>
 
   <body class="text-center" style="background-color: #6DCCAA">
     <form method="POST" class="form-signin" action="{% url "iniciar" %}">
         {% csrf_token %}
     <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
-      <label for="inputEmail"  class="sr-only">email</label>
-      <input type="text" id="inputEmail" name="nombre_usuario" class="form-control" placeholder="Email address" required autofocus>
+      <label for="user"  class="sr-only">Usuario</label>
+      <input type="text" id="user" name="nombre_usuario" class="form-control" placeholder="nombre" required autofocus>
       <label for="inputPassword" class="sr-only">Contraseña</label>
       <input type="password" name="contrasenia" id="inputPassword" class="form-control" placeholder="Password" required>
       <div class="checkbox mb-3">
        
       </div>
       {% load socialaccount %}
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-      <button class="btn btn-secondary btn-block mt-5" type="submit">Sign in!</button>
+      <button class="btn btn-lg btn-light btn-block" type="submit">Iniciar Sesión</button>
       <a class="btn btn-primary btn-block" href="{% provider_login_url "facebook" method="oauth2" %}">
       <span class="fab fa-facebook"></span>
-      Login with facebook
+      iniciar con facebook
  </a>
     </form>
   </body>

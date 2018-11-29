@@ -9,6 +9,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static "css/estilos.css" %}" />
+    <link rel="manifest" href="/static/manifest.json">
 </head>
 
 <body>
@@ -46,13 +47,13 @@
                         </li>
                     </ul>
                     <form class="form-inline">
-                        {% if usuario is not null %}    
+                        {% if  user.is_staff %}    
 
-                            {% if request.user.is_superuser %}
+                            {% if request.user.is_staff %}
                                 <a class="nav-link btn btn-success" href="{% url "administrar"%}" id="admin">Panel de administrador </a>
                             {% endif %}
 
-                            <a class="nav-link btn btn-success" href="{% url "login"%}" id="iniciar">Bienvenido {{usuario}} </a>
+                            <a class="nav-link btn btn-success" href="{% url "login"%}" id="iniciar">Bienvenido {{user}} </a>
                             <a class="nav-link btn btn-success" href="{% url "cerrar_session" %}" id="iniciar">Cerrar Sesión</a>
                         {% else %}
                             <a class="nav-link btn btn-success" href="{% url "login"%}" id="iniciar">Iniciar Sesión</a>
@@ -134,7 +135,7 @@
             </nav>
         </div>
     </div>
-
+    {{user}}
     <div class="separation"></div>
     <div class="container">
         <div class="row">
