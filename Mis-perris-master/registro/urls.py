@@ -27,6 +27,11 @@ urlpatterns = [
     path('administrar/editPerro',views.editPerro, name='editPerro'),
     url(r'^api/', include(router.urls)),
     path('manifest.json', views.manifest, name="manifest"),
-    path('galeria', views.galeria, name='galeria')
+    path('galeria', views.galeria, name='galeria'),
+    path('shell_sworker', views.shell_sworker, name='shell_sworker'),
+    path('shell_admin', views.shell_admin, name='shell_admin'),
+    path('shell_galeria', views.shell_galeria, name='shell_galeria'),
+    path('shell_log', views.shell_log, name='shell_log'),
+    url(r'^sw(.*.js)$', views.sw, name='sw'),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

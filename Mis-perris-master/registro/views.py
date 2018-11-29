@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Persona, Mascotas
 from django.shortcuts import redirect
+from django.template.loader import get_template 
 # Create your views here.
 
 #importar user
@@ -116,4 +117,20 @@ def login_iniciar(request):
        return redirect('index')
     else:
         return HttpResponse('No existe html')
-    
+
+def sw(request, js):
+      template = get_template('sw.js')
+      html = template.render()
+      return HttpResponse(html, content_type="application/x-javascript")
+
+def shell_sworker(request):
+    return render(request,'shell.html',{})
+
+def shell_admin(request):
+    return render(request,'shelladmin.html',{})
+
+def shell_galeria(request):
+    return render(request,'shellgaleria.html',{})
+
+def shell_log(request):
+    return render(request,'shelllog.html',{})
