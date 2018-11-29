@@ -25,8 +25,8 @@ urlpatterns = [
     path('administrar/',views.administrar, name="administrar"),
     path('administrar/registPerro',views.registPerro, name='registPerro'),
     path('administrar/editPerro',views.editPerro, name='editPerro'),
-    url(r'^api/', include(router.urls))
-    path('manifest.json', views.manifest, name="manifest")
-    path('galeria', views.galeria, name='galeria'),
+    url(r'^api/', include(router.urls)),
+    path('manifest.json', views.manifest, name="manifest"),
+    path('galeria', views.galeria, name='galeria')
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
